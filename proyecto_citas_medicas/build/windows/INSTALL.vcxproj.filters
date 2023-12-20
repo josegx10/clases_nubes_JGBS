@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\proyectos\flutter\clases_nubes_JGBS\proyecto_citas_medicas\build\windows\CMakeFiles\4e3a6a8e37054987a2355042e5739a70\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{09EF1DB3-E0C0-39EE-B0CE-CB9A48EAA46B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="E:\proyectos\flutter\clases_nubes_JGBS\proyecto_citas_medicas\build\windows\CMakeFiles\aa77ecaee8bd68d2b49cc1362ea1e45c\flutter_windows.dll.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\proyectos\flutter\clases_nubes_JGBS\proyecto_citas_medicas\build\windows\CMakeFiles\a3010ee5949e0400dfbab90966b1861c\flutter_assemble.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="E:\proyectos\flutter\clases_nubes_JGBS\proyecto_citas_medicas\windows\flutter\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="E:\proyectos\flutter\clases_nubes_JGBS\proyecto_citas_medicas\build\windows\flutter\CMakeFiles\flutter_assemble" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{09EF1DB3-E0C0-39EE-B0CE-CB9A48EAA46B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

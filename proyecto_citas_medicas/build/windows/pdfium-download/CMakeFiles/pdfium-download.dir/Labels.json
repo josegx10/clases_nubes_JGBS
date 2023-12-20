@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "E:/proyectos/flutter/clases_nubes_JGBS/proyecto_citas_medicas/build/windows/pdfium-download/CMakeFiles/pdfium-download"
+		},
+		{
+			"file" : "E:/proyectos/flutter/clases_nubes_JGBS/proyecto_citas_medicas/build/windows/pdfium-download/CMakeFiles/46419caea7bdb0449cd055833cba7593/pdfium-download.rule"
+		},
+		{
+			"file" : "E:/proyectos/flutter/clases_nubes_JGBS/proyecto_citas_medicas/build/windows/pdfium-download/CMakeFiles/ebf570e4945d908d941b116a12c7f5b6/pdfium-download-complete.rule"
+		},
+		{
+			"file" : "E:/proyectos/flutter/clases_nubes_JGBS/proyecto_citas_medicas/build/windows/pdfium-download/CMakeFiles/6cd8953467340858b408113eaebcf056/pdfium-download-build.rule"
+		},
+		{
+			"file" : "E:/proyectos/flutter/clases_nubes_JGBS/proyecto_citas_medicas/build/windows/pdfium-download/CMakeFiles/6cd8953467340858b408113eaebcf056/pdfium-download-configure.rule"
+		},
+		{
+			"file" : "E:/proyectos/flutter/clases_nubes_JGBS/proyecto_citas_medicas/build/windows/pdfium-download/CMakeFiles/6cd8953467340858b408113eaebcf056/pdfium-download-download.rule"
+		},
+		{
+			"file" : "E:/proyectos/flutter/clases_nubes_JGBS/proyecto_citas_medicas/build/windows/pdfium-download/CMakeFiles/6cd8953467340858b408113eaebcf056/pdfium-download-install.rule"
+		},
+		{
+			"file" : "E:/proyectos/flutter/clases_nubes_JGBS/proyecto_citas_medicas/build/windows/pdfium-download/CMakeFiles/6cd8953467340858b408113eaebcf056/pdfium-download-mkdir.rule"
+		},
+		{
+			"file" : "E:/proyectos/flutter/clases_nubes_JGBS/proyecto_citas_medicas/build/windows/pdfium-download/CMakeFiles/6cd8953467340858b408113eaebcf056/pdfium-download-patch.rule"
+		},
+		{
+			"file" : "E:/proyectos/flutter/clases_nubes_JGBS/proyecto_citas_medicas/build/windows/pdfium-download/CMakeFiles/6cd8953467340858b408113eaebcf056/pdfium-download-test.rule"
+		},
+		{
+			"file" : "E:/proyectos/flutter/clases_nubes_JGBS/proyecto_citas_medicas/build/windows/pdfium-download/CMakeFiles/6cd8953467340858b408113eaebcf056/pdfium-download-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"pdfium-download"
+		],
+		"name" : "pdfium-download"
+	}
+}

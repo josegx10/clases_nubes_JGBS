@@ -1,0 +1,38 @@
+[
+  {
+    "date": "2023-11-15",
+    "hour": "8:30",
+    "name": "Usuario 1",
+    "reason": "Quitar muelas"
+  },
+  {
+    "date": "2023-11-15",
+    "hour": "9:30",
+    "name": "Usuario 2",
+    "reason": "Quitar muelas"
+  },
+  {
+    "date": "2023-11-15",
+    "hour": "10:30",
+    "name": "Usuario 3",
+    "reason": "Quitar muelas"
+  },
+  {
+    "date": "2023-11-15",
+    "hour": "11:30",
+    "name": "Usuario 4",
+    "reason": "Quitar muelas"
+  },
+  {
+    "date": "2023-11-15",
+    "hour": "12:30",
+    "name": "Usuario 5",
+    "reason": "Quitar muelas"
+  },
+  {
+    "date": "2023-11-15",
+    "hour": "13:30",
+    "name": "Usuario 6",
+    "reason": "Quitar muelas"
+  }
+]

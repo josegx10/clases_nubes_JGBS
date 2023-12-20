@@ -1,0 +1,10 @@
+^E:\PROYECTOS\FLUTTER\CLASES_NUBES_JGBS\PROYECTO_CITAS_MEDICAS\BUILD\WINDOWS\CMAKEFILES\4E3A6A8E37054987A2355042E5739A70\INSTALL_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
