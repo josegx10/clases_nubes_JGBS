@@ -176,7 +176,14 @@ class _MedicSitePageState extends State<MedicSitePage> {
     activarMover = true;
   }
 
-  Future<void> _moverCitas(int index) async {
+  Future<bool> _moverCitas(int index) async {
+    for (int t = 1; t < int.parse(modelMover['count']); t++) {
+      final respuesta = await get(
+          Uri.parse(url + '/' + CodigoFecha + '/' + horas[index + t]));
+      if (respuesta.statusCode == 404) {
+        return false;
+      }
+    }
     _putCitas(
         modelMover['id'],
         modelMover['nombre'],
@@ -206,6 +213,7 @@ class _MedicSitePageState extends State<MedicSitePage> {
     }
 
     activarMover = false;
+    return true;
   }
 
   @override
