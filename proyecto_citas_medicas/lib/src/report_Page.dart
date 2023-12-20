@@ -14,7 +14,7 @@ class _reportPageState extends State<reportPage> {
   DateFormat fecha = DateFormat('EEEE d MMMM', 'es');
   List<dynamic> DataJson = [];
   List<dynamic> DataFecha = [];
-  var url = "https://proyect-cm-api.vercel.app/citass";
+  var url = "https://proyect-cm-api.vercel.app/citas";
   Future<void> _llamarUrl(String CodigoFecha) async {
     final respuesta = await get(Uri.parse(url));
 
@@ -128,7 +128,7 @@ class _reportPageState extends State<reportPage> {
                   ElevatedButton(
                     onPressed: () async {
                       await launchUrl(Uri.parse(
-                          'whatsapp://send?phone=+52${DataFecha[i - 1]['telefono']}&text=${Uri.encodeComponent("Hola desde flutter")}'));
+                          'whatsapp://send?phone=+52${DataFecha[i - 1]['telefono']}&text=${Uri.encodeComponent("Confirmar cita")}'));
                     },
                     child: Icon(Icons.add),
                     style: ElevatedButton.styleFrom(
