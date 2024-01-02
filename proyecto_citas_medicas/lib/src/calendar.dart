@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:proyecto_citas_medicas/src/medic_page.dart';
+
 import 'package:table_calendar/table_calendar.dart';
 
 class CalendarPage extends StatefulWidget {
@@ -14,6 +16,11 @@ class _CalendarPageState extends State<CalendarPage> {
         lastDay: DateTime.utc(2030, 3, 14),
         focusedDay: DateTime.now(),
         locale: 'es_ES',
+        onDaySelected: (selectedDay, focusedDay) => {
+          setState(() {
+            date = selectedDay;
+          })
+        },
       ),
     );
   }

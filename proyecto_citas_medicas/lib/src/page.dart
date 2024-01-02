@@ -13,8 +13,8 @@ class PageList extends StatefulWidget {
 
 class _PageListState extends State<PageList>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController;
   var titulo = "Consultorio dental";
+  late TabController _tabController;
   @override
   void dispose() {
     // TODO: implement dispose

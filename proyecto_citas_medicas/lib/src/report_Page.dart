@@ -128,7 +128,7 @@ class _reportPageState extends State<reportPage> {
                   ElevatedButton(
                     onPressed: () async {
                       await launchUrl(Uri.parse(
-                          'whatsapp://send?phone=+52${DataFecha[i - 1]['telefono']}&text=${Uri.encodeComponent("Confirmar cita")}'));
+                          'whatsapp://send?phone=+52${DataFecha[i - 1]['telefono']}&text=${Uri.encodeComponent("Confirmar cita que inicia a las ${DataFecha[i - 1]['hora']}")}'));
                     },
                     child: Icon(Icons.add),
                     style: ElevatedButton.styleFrom(

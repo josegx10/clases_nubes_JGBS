@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'dart:convert';
@@ -102,6 +103,7 @@ class _MedicSitePageState extends State<MedicSitePage> {
       return false;
     }
     _llamarUrl();
+
     return true;
   }
 
@@ -132,6 +134,7 @@ class _MedicSitePageState extends State<MedicSitePage> {
       body: jsonEncode(data),
       headers: {'Content-Type': 'application/json'},
     );
+    data['pago'] = '0';
     await put(
       Uri.parse(url + '/all/' + id),
       body: jsonEncode(data),
@@ -207,12 +210,13 @@ class _MedicSitePageState extends State<MedicSitePage> {
           horas[index + y],
           'pendiente',
           modelMover['telefono'],
-          modelMover['pago'],
+          '0',
           '0',
           modelMover['id']);
     }
 
     activarMover = false;
+
     return true;
   }
 
@@ -431,8 +435,14 @@ class _MedicSitePageState extends State<MedicSitePage> {
             Container(
               width: MediaQuery.of(context).size.width / 15.1,
               child: Center(
-                child: TextField(
-                    controller: telefonoCtrl, style: TextStyle(fontSize: 18)),
+                child: TextFormField(
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    maxLength: 10,
+                    controller: telefonoCtrl,
+                    style: TextStyle(fontSize: 18)),
               ),
             ),
             SizedBox(
@@ -458,10 +468,10 @@ class _MedicSitePageState extends State<MedicSitePage> {
                     children: [
                       if (nom == '' && !activarMover)
                         ElevatedButton(
-                          onPressed: () {
+                          onPressed: () async {
                             if (nomCtrl.text.length > 0 &&
                                 telefonoCtrl.text.length > 0) {
-                              _postCitas(
+                              bool ya = await _postCitas(
                                   '',
                                   nomCtrl.text,
                                   CodigoFecha,
@@ -472,6 +482,14 @@ class _MedicSitePageState extends State<MedicSitePage> {
                                   pagoCtrl.text,
                                   '1',
                                   '0');
+                              if (ya)
+                                _showSuccessSnackBar(
+                                    'Cita guardada correctamente',
+                                    Colors.green);
+                            } else {
+                              _showSuccessSnackBar(
+                                  'Error: Falto datos para guardar la cita',
+                                  Colors.red);
                             }
                           },
                           child: Icon(Icons.add),
@@ -486,8 +504,15 @@ class _MedicSitePageState extends State<MedicSitePage> {
                         ),
                       if (nom == '' && activarMover)
                         ElevatedButton(
-                          onPressed: () {
-                            _moverCitas(i);
+                          onPressed: () async {
+                            bool ya = await _moverCitas(i);
+                            if (ya)
+                              _showSuccessSnackBar(
+                                  'Cita movida correctamente', Colors.green);
+                            else
+                              _showSuccessSnackBar(
+                                  'Error: La cita no se pudo mover',
+                                  Colors.red);
                           },
                           child: Icon(Icons.add),
                           style: ElevatedButton.styleFrom(
@@ -539,6 +564,9 @@ class _MedicSitePageState extends State<MedicSitePage> {
                                   pagoCtrl.text,
                                   count,
                                   idcount);
+                              _showSuccessSnackBar(
+                                  'Cambio de datos de cita correctamente',
+                                  Colors.green);
                             },
                             style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.zero,
@@ -555,6 +583,8 @@ class _MedicSitePageState extends State<MedicSitePage> {
                         ElevatedButton(
                             onPressed: () {
                               _deleteCitas(id);
+                              _showSuccessSnackBar(
+                                  'Cita eliminada correctamente', Colors.green);
                             },
                             style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.zero,
@@ -593,6 +623,14 @@ class _MedicSitePageState extends State<MedicSitePage> {
                                     pagoCtrl.text,
                                     '${int.parse(count) + 1}',
                                     '0');
+
+                              if (ya)
+                                _showSuccessSnackBar(
+                                    'Hora agregada a la cita', Colors.green);
+                              else
+                                _showSuccessSnackBar(
+                                    'Error: No se pude agregar hora a la cita',
+                                    Colors.red);
                             },
                             style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.zero,
@@ -612,5 +650,14 @@ class _MedicSitePageState extends State<MedicSitePage> {
             ),
           ]),
         ));
+  }
+
+  void _showSuccessSnackBar(String message, Color col) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: col,
+      ),
+    );
   }
 }
