@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "usuario 1",
+    "phone": "6688123123",
+    "email": "usu@email.com"
+  },
+  {
+    "id": 2,
+    "name": "Usuario 2",
+    "phone": "6871231230",
+    "email": "usu2@email.com"
+  },
+  {
+    "id": 3,
+    "name": "Usuario 3",
+    "phone": "6688668866",
+    "email": "usu3@email.com"
+  },
+  {
+    "id": 4,
+    "name": "Usuario 4",
+    "phone": "668121212",
+    "email": "usuario@email.com"
+  },
+  {
+    "id": 5,
+    "name": "Usuario 5",
+    "phone": "6688123456",
+    "email": "nada@email.com"
+  },
+  {
+    "id": 6,
+    "name": "Usuario 6",
+    "phone": "1234567890",
+    "email": "email@email.com"
+  }
+]

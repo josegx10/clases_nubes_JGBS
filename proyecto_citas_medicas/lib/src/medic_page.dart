@@ -14,8 +14,10 @@ class MedicSitePage extends StatefulWidget {
 }
 
 class _MedicSitePageState extends State<MedicSitePage> {
+  bool fechahoy = true;
   List<dynamic> DataJson = [];
   List<dynamic> DataFecha = [];
+
   String CodigoFecha = date.day.toString() +
       "-" +
       date.month.toString() +
@@ -154,6 +156,13 @@ class _MedicSitePageState extends State<MedicSitePage> {
     _llamarUrl();
   }
 
+  Future<void> _deleteHoraCita(String hora) async {
+    final Data = DataFecha.where((element) => element['hora'] == hora).toList();
+    await delete(Uri.parse(url + '/' + Data[0]['id'].toString()));
+
+    _llamarUrl();
+  }
+
   Future<void> guardarMover(
       String id,
       String nombre,
@@ -238,6 +247,14 @@ class _MedicSitePageState extends State<MedicSitePage> {
           date.year.toString();
       DataFecha =
           DataJson.where((element) => element['fecha'] == CodigoFecha).toList();
+      DateTime hoy = DateTime.now();
+      DateTime ayer = hoy.subtract(Duration(days: 1));
+      if (date.isAfter(ayer) || date == DateTime.now()) {
+        fechahoy = true;
+      } else {
+        fechahoy = false;
+      }
+      print('$fechahoy');
     });
   }
 
@@ -252,6 +269,14 @@ class _MedicSitePageState extends State<MedicSitePage> {
       DataFecha =
           DataJson.where((element) => element['fecha'] == CodigoFecha).toList();
     });
+    DateTime hoy = DateTime.now();
+    DateTime ayer = hoy.subtract(Duration(days: 1));
+    if (date.isAfter(ayer) || date == DateTime.now()) {
+      fechahoy = true;
+    } else {
+      fechahoy = false;
+    }
+    print('$fechahoy');
   }
 
   @override
@@ -276,6 +301,14 @@ class _MedicSitePageState extends State<MedicSitePage> {
                       date.year.toString();
                   DataFecha = DataJson.where(
                       (element) => element['fecha'] == CodigoFecha).toList();
+                  DateTime hoy = DateTime.now();
+                  DateTime ayer = hoy.subtract(Duration(days: 1));
+                  if (date.isAfter(ayer) || date == DateTime.now()) {
+                    fechahoy = true;
+                  } else {
+                    fechahoy = false;
+                  }
+                  print('$fechahoy');
                 });
               },
               icon: Icon(Icons.today)),
@@ -409,14 +442,20 @@ class _MedicSitePageState extends State<MedicSitePage> {
             Container(
               width: MediaQuery.of(context).size.width / 10.1,
               child: Center(
-                child: Text('${horas[i]} ', style: TextStyle(fontSize: 18)),
+                child: Text(
+                  '${horas[i]} ',
+                  style: TextStyle(fontSize: 18),
+                ),
               ),
             ),
             Container(
               width: MediaQuery.of(context).size.width / 4.1 - 20,
               child: Center(
                 child: TextField(
-                    controller: nomCtrl, style: TextStyle(fontSize: 18)),
+                  controller: nomCtrl,
+                  style: TextStyle(fontSize: 18),
+                  enabled: fechahoy,
+                ),
               ),
             ),
             SizedBox(
@@ -426,7 +465,10 @@ class _MedicSitePageState extends State<MedicSitePage> {
               width: MediaQuery.of(context).size.width / 4.1 - 20,
               child: Center(
                 child: TextField(
-                    controller: motivoCtrl, style: TextStyle(fontSize: 18)),
+                  controller: motivoCtrl,
+                  style: TextStyle(fontSize: 18),
+                  enabled: fechahoy,
+                ),
               ),
             ),
             SizedBox(
@@ -436,13 +478,15 @@ class _MedicSitePageState extends State<MedicSitePage> {
               width: MediaQuery.of(context).size.width / 15.1,
               child: Center(
                 child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
-                    maxLength: 10,
-                    controller: telefonoCtrl,
-                    style: TextStyle(fontSize: 18)),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly,
+                  ],
+                  maxLength: 10,
+                  controller: telefonoCtrl,
+                  style: TextStyle(fontSize: 18),
+                  enabled: fechahoy,
+                ),
               ),
             ),
             SizedBox(
@@ -452,7 +496,10 @@ class _MedicSitePageState extends State<MedicSitePage> {
               width: MediaQuery.of(context).size.width / 15.1,
               child: Center(
                 child: TextField(
-                    controller: pagoCtrl, style: TextStyle(fontSize: 18)),
+                  controller: pagoCtrl,
+                  style: TextStyle(fontSize: 18),
+                  enabled: fechahoy,
+                ),
               ),
             ),
             SizedBox(
@@ -466,7 +513,7 @@ class _MedicSitePageState extends State<MedicSitePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (nom == '' && !activarMover)
+                      if (nom == '' && !activarMover && fechahoy)
                         ElevatedButton(
                           onPressed: () async {
                             if (nomCtrl.text.length > 0 &&
@@ -502,7 +549,7 @@ class _MedicSitePageState extends State<MedicSitePage> {
                             ),
                           ),
                         ),
-                      if (nom == '' && activarMover)
+                      if (nom == '' && activarMover && fechahoy)
                         ElevatedButton(
                           onPressed: () async {
                             bool ya = await _moverCitas(i);
@@ -524,7 +571,7 @@ class _MedicSitePageState extends State<MedicSitePage> {
                             ),
                           ),
                         ),
-                      if (nom != '' && int.parse(count) > 0)
+                      if (nom != '' && int.parse(count) > 0 && fechahoy)
                         ElevatedButton(
                             onPressed: () {
                               guardarMover(
@@ -550,7 +597,7 @@ class _MedicSitePageState extends State<MedicSitePage> {
                             child: Icon(
                               Icons.open_with,
                             )),
-                      if (nom != '' && int.parse(count) > 0)
+                      if (nom != '' && int.parse(count) > 0 && fechahoy)
                         ElevatedButton(
                             onPressed: () {
                               _putCitas(
@@ -579,25 +626,63 @@ class _MedicSitePageState extends State<MedicSitePage> {
                             child: Icon(
                               Icons.add,
                             )),
-                      if (nom != '' && int.parse(count) > 0)
-                        ElevatedButton(
-                            onPressed: () {
-                              _deleteCitas(id);
-                              _showSuccessSnackBar(
-                                  'Cita eliminada correctamente', Colors.green);
-                            },
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.zero,
-                              minimumSize: Size.zero,
-                              primary: Colors.red, // Color de fondo
-                              textStyle: TextStyle(
-                                color: Colors.white, // Color del texto
+                      if (nom != '' && int.parse(count) > 0 && fechahoy)
+                        Tooltip(
+                          message: 'Para eliminar toda la cita',
+                          child: ElevatedButton(
+                              onPressed: () {
+                                _deleteCitas(id);
+                                _showSuccessSnackBar(
+                                    'Cita eliminada correctamente',
+                                    Colors.green);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: Size.zero,
+                                primary: Colors.red, // Color de fondo
+                                textStyle: TextStyle(
+                                  color: Colors.white, // Color del texto
+                                ),
                               ),
-                            ),
-                            child: Icon(
-                              Icons.cancel,
-                            )),
-                      if (nom != '' && int.parse(count) > 0)
+                              child: Icon(
+                                Icons.cancel,
+                              )),
+                        ),
+                      if (nom != '' && int.parse(count) > 1 && fechahoy)
+                        Tooltip(
+                          message: 'Para eliminar la ultima hora de la cita',
+                          child: ElevatedButton(
+                              onPressed: () {
+                                _deleteHoraCita(
+                                    horas[i + int.parse(count) - 1]);
+                                _putCitas(
+                                    id,
+                                    nomCtrl.text,
+                                    CodigoFecha,
+                                    motivoCtrl.text,
+                                    horas[i],
+                                    'pendiente',
+                                    telefonoCtrl.text,
+                                    pagoCtrl.text,
+                                    '${int.parse(count) - 1}',
+                                    idcount);
+                                _showSuccessSnackBar(
+                                    'Quitar hora de cita correctamente',
+                                    Colors.green);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                minimumSize: Size.zero,
+                                primary: Colors.red[900]!, // Color de fondo
+                                textStyle: TextStyle(
+                                  color: Colors.white, // Color del texto
+                                ),
+                              ),
+                              child: Icon(
+                                Icons.remove_circle,
+                              )),
+                        ),
+                      if (nom != '' && int.parse(count) > 0 && fechahoy)
                         ElevatedButton(
                             onPressed: () async {
                               bool ya = await _postCitas(

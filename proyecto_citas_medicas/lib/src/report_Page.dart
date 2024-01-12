@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -130,11 +131,13 @@ class _reportPageState extends State<reportPage> {
                       await launchUrl(Uri.parse(
                           'whatsapp://send?phone=+52${DataFecha[i - 1]['telefono']}&text=${Uri.encodeComponent("Confirmar cita que inicia a las ${DataFecha[i - 1]['hora']}")}'));
                     },
-                    child: Icon(Icons.add),
+                    child: FaIcon(
+                      FontAwesomeIcons.whatsapp,
+                    ),
                     style: ElevatedButton.styleFrom(
-                      minimumSize: Size.zero,
                       padding: EdgeInsets.zero,
-                      primary: Colors.green, // Color de fondo
+                      primary: Colors.green,
+                      // Color de fondo
                       textStyle: TextStyle(
                         color: Colors.white, // Color del texto
                       ),

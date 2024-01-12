@@ -39,6 +39,7 @@ dependencies:
   url_launcher: ^6.2.2
   whatsapp_unilink: ^2.1.0
   another_flushbar: ^1.12.30
+  font_awesome_flutter: ^10.6.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -63,7 +64,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
+  fonts:
+    - family: CustomIcom
+      fonts:
+        - asset: fonts/CustomIcons.ttf
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/Pacient.json
@@ -81,7 +85,7 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
+
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
